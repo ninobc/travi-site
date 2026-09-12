@@ -2,8 +2,10 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow, noarchive"><title>travi</title>
 <script>
   // Invitation links carry their code in the path; the static host cannot route them, so hand off.
-  var m = location.pathname.match(/^\/trips\/join\/([A-Za-z0-9]{6,12})\/?$/);
-  if (m) { location.replace("/trips/join/?code=" + m[1]); }
+  var t = location.pathname.match(/^\/trips\/join\/([A-Za-z0-9]{6,12})\/?$/);
+  var f = location.pathname.match(/^\/friends\/accept\/([A-Za-z0-9]{6,12})\/?$/);
+  if (t) { location.replace("/trips/join/?code=" + t[1]); }
+  else if (f) { location.replace("/friends/accept/?code=" + f[1]); }
   else { location.replace("/"); }
 </script>
 </head><body></body></html>

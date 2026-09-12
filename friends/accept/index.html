@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>A friend on Travi · travi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&display=swap">
+<style>
+  :root { --bg: #05060F; --paper: #10122A; --ink: #F4F5FA; --ink-2: #9A9EB8; --ink-3: #6A6F86; --accent: #7B63FF; --accent-2: #4A2FE0; --line: #22254A; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif; display: grid; place-items: center; padding: 24px; -webkit-font-smoothing: antialiased; }
+  .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; letter-spacing: -0.03em; color: var(--ink-2); }
+  .mark i { width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--accent), var(--accent-2) 70%); box-shadow: 0 0 0 4px rgba(123,99,255,0.14), 0 0 24px rgba(123,99,255,0.35); }
+  main { width: min(420px, 100%); display: grid; gap: 18px; }
+  .card { background: linear-gradient(160deg, #191B3C, var(--paper) 60%); border: 1px solid var(--line); border-radius: 26px; padding: 26px 24px 22px; display: grid; gap: 12px; }
+  .cover { height: 132px; border-radius: 18px; background: linear-gradient(135deg, var(--accent-2), var(--accent)); display: grid; place-items: center; font-size: 56px; overflow: hidden; }
+  .cover img { width: 100%; height: 100%; object-fit: cover; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  h1 { margin: 0; font-size: 30px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
+  .dates { color: var(--ink-2); font-size: 16px; }
+  .host { display: flex; align-items: center; gap: 10px; color: var(--ink-2); font-size: 15px; margin-top: 4px; }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--accent-2); display: grid; place-items: center; font-size: 12px; font-weight: 700; color: #fff; overflow: hidden; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .cta { display: grid; gap: 10px; margin-top: 8px; }
+  a.button, button { appearance: none; border: 0; font: inherit; font-weight: 600; font-size: 17px; padding: 15px 18px; border-radius: 999px; text-align: center; text-decoration: none; cursor: pointer; }
+  .primary { background: var(--accent); color: #fff; }
+  .secondary { background: transparent; color: var(--ink); border: 1px solid var(--line) !important; }
+  .code { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-family: ui-monospace, Menlo, monospace; font-size: 15px; color: var(--ink-2); letter-spacing: 0.18em; padding: 4px 4px 0; }
+  .code b { color: var(--ink); letter-spacing: 0.22em; }
+  .note { color: var(--ink-3); font-size: 13px; text-align: center; line-height: 1.5; }
+  .note a { color: var(--ink-2); }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <div class="mark"><i></i>travi</div>
+  <section class="card" id="card">
+    <div class="cover" id="cover">✈️</div>
+    <div class="eyebrow" id="eyebrow">Friend invitation</div>
+    <h1 id="title">Someone wants to be friends on Travi</h1>
+    <div class="dates" id="dates"></div>
+    <div class="host hidden" id="host"><span class="avatar" id="avatar"></span><span id="hostline"></span></div>
+    <div class="cta">
+      <a class="button primary" id="open" href="#">Open in Travi</a>
+      <button class="button secondary" id="copy" type="button">Copy the code</button>
+    </div>
+    <div class="code"><span>Invite code</span><b id="code">········</b></div>
+  </section>
+  <p class="note">Travi is in private testing. If you don’t have it yet, keep this code: you’ll need it inside the app under <b>Friends · I have a code</b>.<br><a href="/privacy">privacy</a></p>
+</main>
+<script>
+(function () {
+  var SUPABASE = "https://xqwrvevuavyaheyiejfl.supabase.co";
+  var KEY = "sb_publishable_g0AV3h2SiRUwFu0Hpc60iQ_u2DayEuu"; // publishable key: anon role only, no privileges without a user
+  var m = location.pathname.match(/\/friends\/accept\/([A-Za-z0-9]{6,12})/);
+  var code = (m && m[1]) || new URLSearchParams(location.search).get("code") || "";
+  code = code.toUpperCase();
+  var $ = function (id) { return document.getElementById(id); };
+  if (!code) { $("eyebrow").textContent = "No invitation here"; $("title").textContent = "This link is missing its code."; $("open").classList.add("hidden"); $("copy").classList.add("hidden"); return; }
+  $("code").textContent = code;
+  $("open").href = "travi://friends/accept/" + code;
+  $("copy").addEventListener("click", function () {
+    navigator.clipboard && navigator.clipboard.writeText(code).then(function () { $("copy").textContent = "Copied"; });
+  });
+  function day(s) { var d = new Date(s + "T12:00:00"); return d.toLocaleDateString(undefined, { day: "numeric", month: "short" }); }
+  function initials(n) { return (n || "").split(" ").slice(0, 2).map(function (p) { return p[0] || ""; }).join("").toUpperCase() || "·"; }
+  $("cover").textContent = "🤝";
+  $("dates").textContent = "Accept in the app and you’ll see each other’s globes.";
+})();
+</script>
+</body>
+</html>
