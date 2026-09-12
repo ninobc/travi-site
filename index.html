@@ -3,81 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Travi</title>
-<meta name="description" content="Travi is the travel companion that keeps everywhere you have been on a living globe: trips from your photos, a year in review, friends, plans and split costs.">
-<meta property="og:title" content="Travi">
-<meta property="og:description" content="Everywhere you’ve been, rendered beautifully.">
-<meta property="og:url" content="https://travi.app">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>travi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@600;700&display=swap">
 <style>
-  :root {
-    --bg: #E7EBF6; --surface: #FFFFFF; --ink: #0B0D1A; --ink-2: #5B6078; --ink-3: #9EA3B8;
-    --accent: #4B2AFF; --accent-2: #8C7BFF; --line: rgba(11,13,26,0.10);
-    --display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
-    --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #05060F; --surface: #14172B; --ink: #F4F5FA; --ink-2: #A9AEC4; --ink-3: #6A6F86; --accent: #7B63FF; --accent-2: #4A2FE0; --line: rgba(244,245,250,0.10); }
-  }
+  :root { --bg: #05060F; --ink: #F4F5FA; --ink-2: #6A6F86; --accent: #7B63FF; --accent-2: #4A2FE0; }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 24px 80px; }
-  header { display: flex; align-items: center; justify-content: space-between; }
-  .mark { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -0.03em; }
-  .mark i { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--accent-2), var(--accent) 70%); box-shadow: 0 0 0 5px rgba(75,42,255,0.12); }
-  nav a { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 14px; margin-left: 20px; }
-  .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr); gap: 40px; align-items: center; padding: 72px 0 40px; }
-  @media (max-width: 820px) { .hero { grid-template-columns: 1fr; padding-top: 48px; } }
-  h1 { font-family: var(--display); font-size: clamp(42px, 6.5vw, 76px); line-height: 0.98; letter-spacing: -0.04em; margin: 0 0 18px; text-wrap: balance; }
-  .lede { font-size: 18px; color: var(--ink-2); max-width: 46ch; margin: 0 0 26px; }
-  .cta { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; border-radius: 999px; padding: 14px 22px; font-weight: 600; text-decoration: none; }
-  .cta small { font-weight: 500; opacity: 0.8; }
-  .globe { aspect-ratio: 1; border-radius: 50%; position: relative; background:
-      radial-gradient(circle at 38% 32%, #2a2a6a 0%, #14172B 45%, #05060F 100%);
-      box-shadow: 0 0 0 14px rgba(123,99,255,0.12), 0 0 80px rgba(123,99,255,0.35), inset -30px -30px 80px rgba(0,0,0,0.5); overflow: hidden; }
-  .globe::before { content: ""; position: absolute; inset: 0; background:
-      radial-gradient(ellipse 22% 14% at 36% 34%, rgba(123,99,255,0.9), rgba(123,99,255,0) 70%),
-      radial-gradient(ellipse 12% 9% at 58% 48%, rgba(123,99,255,0.9), rgba(123,99,255,0) 70%),
-      radial-gradient(ellipse 10% 12% at 44% 70%, rgba(123,99,255,0.85), rgba(123,99,255,0) 70%); }
-  .globe::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 34px); border-radius: 50%; mask: radial-gradient(circle, #000 60%, transparent 72%); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 40px; }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
-  .card h3 { font-family: var(--display); font-size: 19px; letter-spacing: -0.02em; margin: 0 0 6px; }
-  .card p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
-  footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-  footer a { color: var(--ink-2); text-decoration: none; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif; display: grid; place-items: center; -webkit-font-smoothing: antialiased; }
+  .mark { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 28px; letter-spacing: -0.03em; }
+  .mark i { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--accent), var(--accent-2) 70%); box-shadow: 0 0 0 6px rgba(123,99,255,0.14), 0 0 40px rgba(123,99,255,0.35); }
+  p { position: fixed; bottom: 22px; left: 0; right: 0; text-align: center; margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 12px; color: var(--ink-2); letter-spacing: 0.08em; text-transform: uppercase; }
+  a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="mark"><i></i>travi</div>
-    <nav><a href="#what">What it does</a><a href="mailto:hello@travi.app">Contact</a></nav>
-  </header>
-
-  <section class="hero">
-    <div>
-      <h1>Everywhere you’ve been, rendered beautifully.</h1>
-      <p class="lede">A living globe of your places. Trips found in your photos, on your phone. A year in review worth sharing. Friends, plans, and the bill split without the spreadsheet.</p>
-      <a class="cta" href="#what">Coming to iPhone <small>· TestFlight soon</small></a>
-    </div>
-    <div class="globe" aria-hidden="true"></div>
-  </section>
-
-  <section id="what" class="grid">
-    <div class="card"><h3>The globe</h3><p>Countries you’ve been to, lit from within. Spin it, tip it, unroll it into a map.</p></div>
-    <div class="card"><h3>Trips from photos</h3><p>Dates and locations become stays and trips you review before adding. Nothing leaves your phone.</p></div>
-    <div class="card"><h3>Rewind</h3><p>Your year as a story: countries, kilometres, the furthest you got. Share any card.</p></div>
-    <div class="card"><h3>Friends</h3><p>Compare globes, tag who was there, share albums from a trip.</p></div>
-    <div class="card"><h3>Plans</h3><p>Day-by-day itineraries you can share with one code or as plain text.</p></div>
-    <div class="card"><h3>Split</h3><p>Groups, any currency, who owes who, receipts read on device, settle in one payment.</p></div>
-  </section>
-
-  <footer>
-    <span>© 2026 Travi</span>
-    <span><a href="/privacy">Privacy</a> · <a href="mailto:hello@travi.app">hello@travi.app</a></span>
-  </footer>
-</div>
+  <div class="mark"><i></i>travi</div>
+  <p>soon · <a href="/privacy">privacy</a></p>
 </body>
 </html>
