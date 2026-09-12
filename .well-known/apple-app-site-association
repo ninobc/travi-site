@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["8BU7Z5YT84.com.bouchedid.travi"],
+        "components": [
+          { "/": "/auth/*", "comment": "sign-in callbacks" },
+          { "/": "/expenses/join/*" },
+          { "/": "/friends/invite/*" },
+          { "/": "/groups/join/*" },
+          { "/": "/itineraries/join/*" },
+          { "/": "/albums/join/*" },
+          { "/": "/plans/join/*" }
+        ]
+      }
+    ]
+  },
+  "webcredentials": { "apps": ["8BU7Z5YT84.com.bouchedid.travi"] }
+}
