@@ -6,11 +6,16 @@
         "components": [
           { "/": "/auth/*", "comment": "sign-in callbacks" },
           { "/": "/expenses/join/*" },
-          { "/": "/friends/invite/*" },
+          { "/": "/expenses/add", "comment": "add-expense with query" },
+          { "/": "/friends/accept/*" },
           { "/": "/groups/join/*" },
           { "/": "/itineraries/join/*" },
           { "/": "/albums/join/*" },
-          { "/": "/plans/join/*" }
+          { "/": "/trips/join/*" },
+          { "/": "/place/*" },
+          { "/": "/profile/*" },
+          { "/": "/@*", "comment": "profile links" },
+          { "/": "/p/*", "comment": "profile card page" }
         ]
       }
     ]

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>On Travi · travi</title>
+<meta property="og:title" content="Add me on Travi">
+<meta property="og:description" content="Everywhere you’ve been, in one place. Compare globes with friends.">
+<meta property="og:image" content="https://travi.app/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&display=swap">
+<style>
+  :root { --bg: #05060F; --paper: #10122A; --ink: #F4F5FA; --ink-2: #9A9EB8; --ink-3: #6A6F86; --accent: #7B63FF; --accent-2: #4A2FE0; --line: #22254A; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif; display: grid; place-items: center; padding: 24px; -webkit-font-smoothing: antialiased; }
+  .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; letter-spacing: -0.03em; color: var(--ink-2); }
+  .mark i { width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--accent), var(--accent-2) 70%); box-shadow: 0 0 0 4px rgba(123,99,255,0.14), 0 0 24px rgba(123,99,255,0.35); }
+  main { width: min(420px, 100%); display: grid; gap: 18px; }
+  .card { background: linear-gradient(160deg, #191B3C, var(--paper) 60%); border: 1px solid var(--line); border-radius: 26px; padding: 26px 24px 22px; display: grid; gap: 12px; text-align: center; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto; background: linear-gradient(135deg, var(--accent-2), var(--accent)); display: grid; place-items: center; font-size: 28px; font-weight: 700; }
+  h1 { margin: 0; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
+  .sub { color: var(--ink-2); font-size: 16px; }
+  .cta { display: grid; gap: 10px; margin-top: 8px; }
+  a.button, button { appearance: none; border: 0; font: inherit; font-weight: 600; font-size: 17px; padding: 15px 18px; border-radius: 999px; text-align: center; text-decoration: none; cursor: pointer; }
+  .primary { background: var(--accent); color: #fff; }
+  .secondary { background: transparent; color: var(--ink); border: 1px solid var(--line) !important; }
+  .note { color: var(--ink-3); font-size: 13px; text-align: center; line-height: 1.5; }
+  .note a { color: var(--ink-2); }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <div class="mark"><i></i>travi</div>
+  <section class="card">
+    <div class="avatar" id="avatar">@</div>
+    <h1 id="title">Someone on Travi</h1>
+    <div class="sub" id="sub">Add them and compare globes.</div>
+    <div class="cta">
+      <a class="button primary" id="open" href="#">Open in Travi</a>
+      <button class="button secondary" id="copy" type="button">Copy the handle</button>
+    </div>
+  </section>
+  <p class="note" id="note">Travi is in private testing. Keep the handle: in the app, go to <b>Friends · Add friends</b> and search for it.<br><a href="/privacy">privacy</a></p>
+</main>
+<script>
+(function () {
+  var m = location.pathname.match(/^\/@([A-Za-z0-9_]{2,30})/) || location.pathname.match(/^\/p\/([A-Za-z0-9_]{2,30})/);
+  var h = (m && m[1]) || new URLSearchParams(location.search).get("h") || "";
+  h = h.toLowerCase();
+  var $ = function (id) { return document.getElementById(id); };
+  if (!h) { $("title").textContent = "This link is missing a handle."; $("open").classList.add("hidden"); $("copy").classList.add("hidden"); return; }
+  $("title").textContent = "@" + h + " on Travi";
+  $("avatar").textContent = h[0].toUpperCase();
+  document.title = "@" + h + " · travi";
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  if (ios) { $("open").href = "travi://profile/" + h; }
+  else { $("open").textContent = "Send this page to your iPhone"; $("open").href = "sms:?&body=" + encodeURIComponent("Add me on Travi: https://travi.app/@" + h); }
+  $("copy").addEventListener("click", function () {
+    navigator.clipboard && navigator.clipboard.writeText("@" + h).then(function () { $("copy").textContent = "Copied"; });
+  });
+})();
+</script>
+</body>
+</html>

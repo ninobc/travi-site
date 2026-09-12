@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
+<meta property="og:title" content="A friend on Travi">
+<meta property="og:description" content="Everywhere you’ve been, in one place. Plan, split and share the album together.">
+<meta property="og:image" content="https://travi.app/og.png">
 <title>A friend on Travi · travi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&display=swap">
@@ -50,7 +53,7 @@
     </div>
     <div class="code"><span>Invite code</span><b id="code">········</b></div>
   </section>
-  <p class="note">Travi is in private testing. If you don’t have it yet, keep this code: you’ll need it inside the app under <b>Friends · I have a code</b>.<br><a href="/privacy">privacy</a></p>
+  <p class="note" id="note">Travi is in private testing. If you don’t have it yet, keep this code: you’ll need it inside the app under <b>Friends · I have a code</b>.<br><a href="/privacy">privacy</a></p>
 </main>
 <script>
 (function () {
@@ -62,7 +65,14 @@
   var $ = function (id) { return document.getElementById(id); };
   if (!code) { $("eyebrow").textContent = "No invitation here"; $("title").textContent = "This link is missing its code."; $("open").classList.add("hidden"); $("copy").classList.add("hidden"); return; }
   $("code").textContent = code;
-  $("open").href = "travi://friends/accept/" + code;
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  if (ios) {
+    $("open").href = "travi://friends/accept/" + code;
+    $("open").addEventListener("click", function () { setTimeout(function () { $("note").textContent = "Don’t have Travi yet? Keep the code; you’ll enter it under Friends · Add friends."; }, 1500); });
+  } else {
+    $("open").textContent = "Send this to your iPhone";
+    $("open").href = "sms:?&body=" + encodeURIComponent("Add me on Travi: " + location.origin + "/friends/accept/" + code);
+  }
   $("copy").addEventListener("click", function () {
     navigator.clipboard && navigator.clipboard.writeText(code).then(function () { $("copy").textContent = "Copied"; });
   });
